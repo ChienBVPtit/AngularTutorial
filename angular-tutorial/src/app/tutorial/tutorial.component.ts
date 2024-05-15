@@ -1,7 +1,8 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CityComponent } from '../city/city.component';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,38 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatButtonModule,
     MatButton,
+    CityComponent,
   ],
   templateUrl: './tutorial.component.html',
   styleUrl: './tutorial.component.scss',
 })
-export class TutorialComponent {
+export class TutorialComponent implements OnInit {
+  @Input() backgroundColor: string;
+  @Input() progressColor: string;
+  @Input() progress: number;
+  constructor() {
+    this.backgroundColor = 'red';
+    this.progressColor = 'blue';
+    this.progress = 4;
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if ('progress' in changes) {
+      console.log('Thay doi progress');
+      if (typeof changes['progress'].currentValue !== 'number') {
+        const progress = Number(changes['progress'].currentValue);
+        if (Number.isNaN(progress)) {
+          this.progress = 0;
+        } else {
+          this.progress = progress;
+        }
+      }
+    }
+  }
+  ngOnInit() {}
+  handleChangeProgres(value: any) {
+    console.log(value.target.value);
+    this.progress = value.target.value;
+  }
   authors = [
     {
       id: 1,

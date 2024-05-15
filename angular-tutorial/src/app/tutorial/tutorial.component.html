@@ -9,12 +9,15 @@
         <div>GTN</div>
       </ng-template>
     </div>
-    <button
-      mat-mini-fab
-      disabled
-      aria-label="Example icon button with a home icon"
-    >
+    <div [style.backgroundColor]="backgroundColor">TEST</div>
+    <input
+      type="number"
+      [value]="progress"
+      (change)="handleChangeProgres($event)"
+    />
+    <button mat-mini-fab aria-label="Example icon button with a home icon">
       <mat-icon>home</mat-icon>
     </button>
+    <app-city></app-city>
   </div>
 </main>

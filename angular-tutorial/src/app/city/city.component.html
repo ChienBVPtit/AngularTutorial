@@ -1,0 +1,5 @@
+<app-city-detail
+  *ngFor="let city of cities"
+  [city]="city"
+  (addCity)="handleAddCity($event)"
+></app-city-detail>
