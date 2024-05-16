@@ -1,9 +1,17 @@
-<div>{{ city.id }} - {{ city.name }}</div>
-
-<button
-  mat-mini-fab
-  aria-label="Example icon button with a home icon"
-  (click)="handleAddCity()"
->
-  <mat-icon>bookmark</mat-icon>
-</button>
+<div class="flex items-center">
+  <div>{{ city.id }} - {{ city.name }}</div>
+  <button
+    mat-mini-fab
+    aria-label="Example icon button with a home icon"
+    (click)="handleAddCity()"
+  >
+    <mat-icon>bookmark</mat-icon>
+  </button>
+  <div>
+    <ng-content></ng-content>
+  </div>
+  <div>
+    Content-2:
+    <ng-content></ng-content>
+  </div>
+</div>
